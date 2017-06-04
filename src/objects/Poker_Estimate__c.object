@@ -138,6 +138,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Estimate__c</fullName>
+        <description>The user-submitted estimate.</description>
+        <externalId>false</externalId>
+        <label>Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Poker_Game__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the game that this estimate is related to. This field is necessary since the Streaming API PushTopic queries don&apos;t currently support relationships. This will allow filtering in the subscription.</description>
