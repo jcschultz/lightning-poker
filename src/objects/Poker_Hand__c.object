@@ -71,6 +71,97 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Calculated_Average_Estimate__c</fullName>
+        <description>Calculated average of valid estimates.</description>
+        <externalId>false</externalId>
+        <formula>Estimate_Sum__c /  Estimate_Count__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Calculated Average Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consensus_Estimate__c</fullName>
+        <description>Calculated average estimate converted to ensure fibonacci scale compliance.</description>
+        <externalId>false</externalId>
+        <formula>IF(Allow_Estimates__c, 0,
+    IF(Calculated_Average_Estimate__c = 0, 0, 
+        IF(AND(Calculated_Average_Estimate__c &gt; 0, Calculated_Average_Estimate__c &lt;= 1), 1,
+            IF(AND(Calculated_Average_Estimate__c &gt; 1, Calculated_Average_Estimate__c &lt;= 2), 2,
+                IF(AND(Calculated_Average_Estimate__c &gt; 2, Calculated_Average_Estimate__c &lt;= 3), 3,
+                    IF(AND(Calculated_Average_Estimate__c &gt; 3, Calculated_Average_Estimate__c &lt;= 5), 5,
+                        IF(AND(Calculated_Average_Estimate__c &gt; 5, Calculated_Average_Estimate__c &lt;= 8), 8,
+                            IF(AND(Calculated_Average_Estimate__c &gt; 8, Calculated_Average_Estimate__c &lt;= 13), 13,
+                                IF(AND(Calculated_Average_Estimate__c &gt; 13, Calculated_Average_Estimate__c &lt;= 21), 21,
+                                    IF(AND(Calculated_Average_Estimate__c &gt; 21, Calculated_Average_Estimate__c &lt;= 34), 34,
+                                        IF(AND(Calculated_Average_Estimate__c &gt; 34, Calculated_Average_Estimate__c &lt;= 56), 56,
+                                            89
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consensus Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estimate_Count__c</fullName>
+        <description>Count of all valid estimates.</description>
+        <externalId>false</externalId>
+        <label>Estimate Count</label>
+        <summaryFilterItems>
+            <field>Poker_Estimate__c.Translated_Estimate__c</field>
+            <operation>greaterThan</operation>
+            <value>-1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Poker_Estimate__c.Translated_Estimate__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </summaryFilterItems>
+        <summaryForeignKey>Poker_Estimate__c.Poker_Hand__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Estimate_Sum__c</fullName>
+        <description>Sum of all valid estimates.</description>
+        <externalId>false</externalId>
+        <label>Estimate Sum</label>
+        <summarizedField>Poker_Estimate__c.Translated_Estimate__c</summarizedField>
+        <summaryFilterItems>
+            <field>Poker_Estimate__c.Translated_Estimate__c</field>
+            <operation>greaterThan</operation>
+            <value>-1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Poker_Estimate__c.Translated_Estimate__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </summaryFilterItems>
+        <summaryForeignKey>Poker_Estimate__c.Poker_Hand__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Final_Estimate__c</fullName>
         <description>The final estimate, either calculated from all player&apos;s estimates or overridden by the game master.</description>
         <externalId>false</externalId>

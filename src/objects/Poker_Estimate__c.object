@@ -53,6 +53,91 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Card_Played__c</fullName>
+        <description>The actual card that the player submitted.</description>
+        <externalId>false</externalId>
+        <label>Card Played</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>Pass</fullName>
+                    <default>false</default>
+                    <label>Pass</label>
+                </value>
+                <value>
+                    <fullName>Coffee</fullName>
+                    <default>false</default>
+                    <label>Coffee</label>
+                </value>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>0</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>13</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>21</label>
+                </value>
+                <value>
+                    <fullName>34</fullName>
+                    <default>false</default>
+                    <label>34</label>
+                </value>
+                <value>
+                    <fullName>55</fullName>
+                    <default>false</default>
+                    <label>55</label>
+                </value>
+                <value>
+                    <fullName>89</fullName>
+                    <default>false</default>
+                    <label>89</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Poker_Game__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the game that this estimate is related to. This field is necessary since the Streaming API PushTopic queries don&apos;t currently support relationships. This will allow filtering in the subscription.</description>
@@ -92,6 +177,42 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Translated_Estimate__c</fullName>
+        <description>Converted card played in number format.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Card_Played__c, &apos;0&apos;), 0, 
+    IF(ISPICKVAL(Card_Played__c, &apos;1&apos;), 1, 
+        IF(ISPICKVAL(Card_Played__c, &apos;2&apos;), 2, 
+            IF(ISPICKVAL(Card_Played__c, &apos;3&apos;), 3, 
+                IF(ISPICKVAL(Card_Played__c, &apos;5&apos;), 5, 
+                    IF(ISPICKVAL(Card_Played__c, &apos;8&apos;), 8, 
+                        IF(ISPICKVAL(Card_Played__c, &apos;13&apos;), 13, 
+                            IF(ISPICKVAL(Card_Played__c, &apos;21&apos;), 21, 
+                                IF(ISPICKVAL(Card_Played__c, &apos;34&apos;), 34, 
+                                    IF(ISPICKVAL(Card_Played__c, &apos;56&apos;), 56, 
+                                        IF(ISPICKVAL(Card_Played__c, &apos;89&apos;), 89, 
+                                            -1
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Translated Estimate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Visible__c</fullName>
