@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Poker_Estimate__c</members>
+        <members>Poker_Game__c</members>
+        <members>Poker_Hand__c</members>
+        <members>Poker_Player__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Poker_Estimate__c-Poker Estimate Layout</members>
+        <members>Poker_Game__c-Poker Game Layout</members>
+        <members>Poker_Hand__c-Poker Hand Layout</members>
+        <members>Poker_Player__c-Poker Player Layout</members>
+        <name>Layout</name>
+    </types>
+    <version>39.0</version>
+</Package>
