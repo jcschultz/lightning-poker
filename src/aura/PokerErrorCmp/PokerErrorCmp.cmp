@@ -1,0 +1,30 @@
+<!--
+ - Created by jschultz on 6/5/17.
+ -->
+
+<aura:component description="Error alert component">
+
+	<aura:attribute name="errorMsg" access="private" type="String" default="" description="Error message" />
+	<aura:attribute name="showError" access="private" type="Boolean" default="false" description="Toggles display of error message." />
+
+	<aura:method name="toggle" action="{!c.handleToggle}" description="Toggles error notification." access="global">
+		<aura:attribute name="show" type="Boolean" default="false" access="global" description="true or false" required="true" />
+		<aura:attribute name="error" type="String" default="" access="global" description="Error message to be displayed." />
+	</aura:method>
+
+
+	<aura:if isTrue="{!v.showError}">
+		<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+			<span class="slds-assistive-text">error</span>
+			<span class="slds-icon_container slds-icon-utility-ban slds-m-right_x-small">
+				<lightning:icon iconName="utility:ban" size="x-small" />
+	        </span>
+			<h2>{!v.errorMsg}</h2>
+			<button class="slds-button slds-button_icon slds-notify__close slds-button_icon-inverse" title="Close">
+				<lightning:icon iconName="utility:close" size="medium" alternativeText="Close error notification" />
+			</button>
+		</div>
+	</aura:if>
+
+
+</aura:component>

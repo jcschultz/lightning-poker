@@ -1,0 +1,17 @@
+<!--
+ - Created by jschultz on 6/7/17.
+ -->
+
+<aura:component description="Launches poker game" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global">
+	<aura:attribute name="recordId" access="global" type="String" default="" description="poker game id" />
+	<aura:attribute name="url" access="private" type="String" default="" description="URL of the poker table app" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.handleInit}" />
+
+	<div class="slds-page-header" role="banner">
+		<h1 class="slds-page-header__title slds-text-align--center">The poker table will open in a new window.</h1>
+	</div>
+	<div class="slds-card slds-m-top--large">
+		<p>You can invite others to join by providing with this URL: <a href="{!v.url}" target="_blank">{!v.url}</a></p>
+	</div>
+</aura:component>

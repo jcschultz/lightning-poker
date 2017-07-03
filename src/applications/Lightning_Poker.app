@@ -8,6 +8,7 @@
     <label>Lightning Poker</label>
     <navType>Standard</navType>
     <tab>Lightning_Poker</tab>
+    <tab>Poker_Game__c</tab>
     <uiType>Lightning</uiType>
     <utilityBar>Lightning_Poker_UtilityBar</utilityBar>
 </CustomApplication>

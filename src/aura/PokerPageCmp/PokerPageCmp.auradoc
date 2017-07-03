@@ -1,0 +1,7 @@
+<!--
+ - Created by jschultz on 6/5/17.
+ -->
+
+<aura:documentation>
+	<aura:description>Container component for the poker game page.</aura:description>
+</aura:documentation>

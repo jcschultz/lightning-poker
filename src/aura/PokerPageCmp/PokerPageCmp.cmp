@@ -1,0 +1,10 @@
+<!--
+ - Created by jschultz on 6/5/17.
+ -->
+
+<aura:component description="Component for displaying the game page" implements="flexipage:availableForAllPageTypes" access="global">
+	<aura:attribute name="gameId" access="global" type="String" default="" description="ID of the current game." />
+
+	<p>Game ID: {!v.gameId}</p>
+
+</aura:component>

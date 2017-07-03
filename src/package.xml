@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>AdminController</members>
+        <members>NewGameCmpController</members>
+        <members>PokerAppController</members>
+        <members>PokerGameService</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>AdminCmp</members>
+        <members>GameLauncherCmp</members>
+        <members>NewGameCmp</members>
+        <members>PokerApp</members>
+        <members>PokerErrorCmp</members>
+        <members>PokerPageCmp</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>Lightning_Poker</members>
         <name>CustomApplication</name>
-    </types>
-    <types>
-        <members>Poker_Estimate__c.Card_Played__c</members>
-        <members>Poker_Estimate__c.Estimate__c</members>
-        <members>Poker_Estimate__c.Poker_Game__c</members>
-        <members>Poker_Estimate__c.Poker_Hand__c</members>
-        <members>Poker_Estimate__c.Poker_Player__c</members>
-        <members>Poker_Estimate__c.Translated_Estimate__c</members>
-        <members>Poker_Estimate__c.Visible__c</members>
-        <members>Poker_Game__c.Completion_Date__c</members>
-        <members>Poker_Game__c.Last_Activity__c</members>
-        <members>Poker_Game__c.Started_Date__c</members>
-        <members>Poker_Game__c.Status__c</members>
-        <members>Poker_Hand__c.Active__c</members>
-        <members>Poker_Hand__c.Allow_Estimates__c</members>
-        <members>Poker_Hand__c.Calculated_Average_Estimate__c</members>
-        <members>Poker_Hand__c.Consensus_Estimate__c</members>
-        <members>Poker_Hand__c.Estimate_Count__c</members>
-        <members>Poker_Hand__c.Estimate_Sum__c</members>
-        <members>Poker_Hand__c.Final_Estimate__c</members>
-        <members>Poker_Hand__c.Poker_Game__c</members>
-        <members>Poker_Hand__c.Position__c</members>
-        <members>Poker_Player__c.Poker_Game__c</members>
-        <members>Poker_Player__c.User__c</members>
-        <name>CustomField</name>
     </types>
     <types>
         <members>Poker_Estimate__c</members>
@@ -50,11 +29,11 @@
     </types>
     <types>
         <members>Lightning_Poker</members>
+        <members>Poker_Game__c</members>
         <name>CustomTab</name>
     </types>
     <types>
         <members>Lightning_Poker</members>
-        <members>Lightning_Poker_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <types>
@@ -64,5 +43,5 @@
         <members>Poker_Player__c-Poker Player Layout</members>
         <name>Layout</name>
     </types>
-    <version>39.0</version>
+    <version>40.0</version>
 </Package>

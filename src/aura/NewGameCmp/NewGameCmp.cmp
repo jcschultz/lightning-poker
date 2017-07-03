@@ -1,0 +1,91 @@
+<!--
+ - Created by jschultz on 6/5/17.
+ -->
+
+<aura:component description="Component for creating a new poker game." implements="lightning:actionOverride,force:hasRecordId,force:hasSObjectName" controller="NewGameCmpController">
+
+	<aura:attribute name="currentStage" access="private" type="Integer" default="1" description="Stage tracker." />
+	<aura:attribute name="pageTitle" access="private" type="String" default="Create a new game" description="Title of the page." />
+	<aura:attribute name="isNextDisabled" access="private" type="Boolean" default="true" description="Toggles disabled attribute of the Next button." />
+	<aura:attribute name="errorMsg" access="private" type="String" default="" description="Error message." />
+	<aura:attribute name="showError" access="private" type="Boolean" default="false" description="Toggles error message display." />
+	<aura:attribute name="showSpinner" access="private" type="Boolean" default="false" description="Toggle the spinner." />
+	<aura:attribute name="game" access="global" type="Poker_Game__c" description="Poker Game record"
+	                default="{
+	                    'sobjectType': 'Poker_Game__c',
+	                    'Name' : '',
+	                    'Id' : '',
+	                    'Status__c' : 'Pending'
+	                }" />
+
+	<div class="slds-container_x-large slds-container_center">
+		<aura:if isTrue="{!v.showError}">
+			<ui:message title="Error" severity="error" closable="true">{!v.errorMsg}</ui:message>
+		</aura:if>
+
+		<div class="header slds-m-vertical_large">
+			<div class="slds-path-coach">
+				<div class="slds-grid">
+					<div class="slds-tabs_path" role="application">
+						<ul class="slds-tabs_path__nav" role="listbox" aria-orientation="horizontal">
+							<li class="{!'slds-tabs_path__item ' + (v.currentStage == 1 ? 'slds-is-current' : 'slds-is-complete')}" role="presentation" aura:id="stageNewGame">
+								<a aria-selected="false" class="slds-tabs_path__link" href="javascript:void(0);" id="path-1" role="option" tabindex="-1">
+						            <span class="slds-tabs_path__stage">
+										<lightning:icon iconName="utility:check" size="x-small" alternativeText="Stage Complete" />
+						            </span>
+									<span class="slds-tabs_path__title">Create a new game</span>
+								</a>
+							</li>
+							<li class="{!'slds-tabs_path__item ' + (v.currentStage == 1 ? 'slds-is-incomplete' : (v.currentStage == 2 ? 'slds-is-current' : 'slds-is-complete'))}" role="presentation" aura:id="stageUserStories">
+								<a aria-selected="false" class="slds-tabs_path__link" href="javascript:void(0);" id="path-2" role="option" tabindex="-1">
+						            <span class="slds-tabs_path__stage">
+										<lightning:icon iconName="utility:check" size="x-small" alternativeText="Stage Complete" />
+						            </span>
+									<span class="slds-tabs_path__title">Add user stories</span>
+								</a>
+							</li>
+							<li class="{!'slds-tabs_path__item ' + (v.currentStage == 3 ? 'slds-is-current' : 'slds-is-incomplete')}" role="presentation" aura:id="stageInvitePlayers">
+								<a aria-selected="false" class="slds-tabs_path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="-1">
+						            <span class="slds-tabs_path__stage">
+										<lightning:icon iconName="utility:check" size="x-small" alternativeText="Stage Complete" />
+						            </span>
+									<span class="slds-tabs_path__title">Invite players</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div><!--.header-->
+
+		<div class="slds-text-heading_large slds-m-bottom_x-large">{!v.pageTitle}</div>
+
+		<!--stage 1: create a new poker game-->
+		<aura:if isTrue="{!v.currentStage == 1}">
+			<lightning:input label="Game Name" name="gameName" value="{!v.game.Name}" required="true" placeholder="Game name, such as Sprint 3" maxlength="80" onchange="{!c.handleGameNameChange}" aura:id="gameName" />
+		</aura:if>
+		<!--/stage 1-->
+
+		<!--stage 2: create user stories-->
+		<aura:if isTrue="{!v.currentStage == 2}">
+			<div class="slds-text-heading_medium slds-m-bottom_x-large">Create User Stories</div>
+
+		</aura:if>
+		<!--/stage 2-->
+
+		<!--stage 3: invite players-->
+		<aura:if isTrue="{!v.currentStage == 3}">
+
+		</aura:if>
+		<!--/stage 3-->
+
+		<div class="slds-grid slds-grid_align-end slds-m-top_large">
+			<lightning:button variant="brand" label="Next" iconName="utility:forward" iconPosition="right" onclick="{!c.handleNextClick}" disabled="{!v.isNextDisabled}" />
+		</div>
+
+	</div><!--.slds-container-->
+
+	<aura:if isTrue="{!v.showSpinner}">
+		<lightning:spinner variant="brand" size="large" alternativeText="Saving data" />
+	</aura:if>
+</aura:component>
