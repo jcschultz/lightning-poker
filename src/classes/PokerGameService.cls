@@ -9,7 +9,6 @@
 * John Schultz    2017-06-05    Newly created
 */
 public class PokerGameService {
-<<<<<<< HEAD
 	
 	public static final String PENDING_STATUS = 'Pending';
 	
@@ -72,7 +71,5 @@ public class PokerGameService {
 			WHERE Id = :gameId
 			LIMIT 1];
 	}
-=======
 
->>>>>>> origin/master
 }
