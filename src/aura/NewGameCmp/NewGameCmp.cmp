@@ -21,7 +21,7 @@
 
 	<aura:handler name="render" value="{!this}" action="{!c.handleRender}" />
 	<aura:handler name="gameNotification" event="c:NewGameNotificationEvent" action="{!c.handleGameNotification}" />
-	<aura:handler name="storySaveEvent" event="c:StorySaveEvent" action="{!c.handleStorySaveEvent}" />
+	<aura:handler name="hasStoriesEvent" event="c:StorySaveEvent" action="{!c.handleStorySaveEvent}" />
 
 	<div class="slds-container_x-large slds-container_center">
 

@@ -3,6 +3,11 @@
  */
 ({
 	
+	fireHasStoriesEvent : function(component, event, helper) {
+		let hasStoriesEvent = component.getEvent('hasStoriesEvent');
+		hasStoriesEvent.fire();
+	},
+	
 	fireNotificationEvent : function(component, event, helper, severity, message) {
 		let notificationEvent = component.getEvent('notificationEvent');
 		
@@ -46,6 +51,7 @@
 	},
 	
 	handleStorySaveEvent : function(component, event, helper) {
+		helper.fireHasStoriesEvent(component, event, helper);
 		helper.getStories(component, event, helper);
 	},
 	

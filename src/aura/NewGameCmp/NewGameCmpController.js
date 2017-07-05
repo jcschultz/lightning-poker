@@ -24,7 +24,6 @@
 	},
 	
 	handleStorySaveEvent : function(component, event, helper) {
-		console.log('newgamecmp caught the event');
 		helper.handleStorySaveEvent(component, event, helper);
 	},
 	

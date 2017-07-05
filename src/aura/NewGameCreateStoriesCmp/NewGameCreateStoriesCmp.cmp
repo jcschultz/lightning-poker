@@ -9,6 +9,7 @@
 
 
 	<aura:handler name="storySaveEvent" event="c:StorySaveEvent" action="{!c.handleStorySaveEvent}" />
+	<aura:registerEvent name="hasStoriesEvent" type="c:StorySaveEvent" />
 
 	<aura:registerEvent name="notificationEvent" type="c:NewGameNotificationEvent" />
 
