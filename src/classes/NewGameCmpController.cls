@@ -36,4 +36,31 @@ public class NewGameCmpController {
 		return PokerHandService.createNewHand(pokerGameId, name, position);
 	}
 	
+	/**
+	* @author: John Schultz
+	* @date: 2017-07-03
+	* @description: Retrieves the poker hands (user stories) related to the poker game.
+	* @param: gameId - String. ID of the poker game record.
+	* @return: List<Poker_Hand__c>
+	*/
+	@AuraEnabled
+	public static List<Poker_Hand__c> getHands(String gameId) {
+		Poker_Game__c game = PokerGameService.getGameById(gameId);
+		return game.Poker_Hands__r;
+	}
+	
+	/**
+	* @author: John Schultz
+	* @date: 2017-07-04
+	* @description: Method for re-sorting the display order of the poker hands (user stories).
+	* @param: idToPositionMap - Map<String, Decimal>. Hand record id : position.
+	* @return: List<Poker_Hand__c>
+	*/
+	@AuraEnabled
+	public static List<Poker_Hand__c> sortHands(Map<String, Decimal> idToPositionMap) {
+		return PokerHandService.sortHands(idToPositionMap);
+	}
+	
+	
+	
 }

@@ -1,0 +1,9 @@
+<!--
+ - Created by john on 7/3/17.
+ -->
+
+<aura:event type="COMPONENT" description="Event for sending notifications to the New Game component">
+	<aura:attribute name="severity" type="String" description="Type of notification (message, confirm, info, warning, error)" />
+	<aura:attribute name="message" type="String" description="Message to display in the notification." />
+	<aura:attribute name="hideMessage" type="Boolean" description="If true, handler should hide the notification." default="false" />
+</aura:event>

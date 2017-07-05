@@ -1,0 +1,9 @@
+/**
+ * Created by john on 7/3/17.
+ */
+.THIS .story-list li {
+	cursor: move;
+}
+.THIS .story-list li:nth-child(odd){
+	background-color: rgba(69, 142, 209, 0.04);
+}

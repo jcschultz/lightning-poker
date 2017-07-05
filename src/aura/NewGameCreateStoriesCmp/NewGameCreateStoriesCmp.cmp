@@ -1,0 +1,35 @@
+<!--
+ - Created by john on 7/2/17.
+ -->
+
+<aura:component description="Component for displaying and creating user stories for a poker game." access="global" controller="NewGameCmpController">
+
+	<aura:attribute name="gameId" access="global" type="Id" default="" description="Id of the poker game." required="true" />
+	<aura:attribute name="hands" access="private" type="Poker_Hand__c[]" default="" description="Poker hands" />
+
+
+	<aura:handler name="storySaveEvent" event="c:StorySaveEvent" action="{!c.handleStorySaveEvent}" />
+
+	<aura:registerEvent name="notificationEvent" type="c:NewGameNotificationEvent" />
+
+	<div>
+		<c:NewStoryCmp gameId="{!v.gameId}" displayOrder="{!v.hands.length}" />
+
+		<aura:if isTrue="{!v.hands.length > 0}">
+			<div class="slds-text-heading_small slds-m-top_x-large">User Stories ({!v.hands.length})</div>
+		</aura:if>
+			<ul class="slds-has-dividers_around-space slds-m-bottom_x-large story-list" aura:id="storyList">
+				<aura:iteration items="{!v.hands}" var="hand" indexVar="idx">
+					<li class="slds-item" data-index="{!idx}" data-id="{!hand.Id}" aura:id="story">{!hand.Name}</li>
+				</aura:iteration>
+			</ul>
+
+	</div>
+
+	<ltng:require
+		styles="{!$Resource.Dragula + '/dragula.min.css'}"
+		scripts="{!$Resource.Dragula + '/dragula.min.js'}"
+        afterScriptsLoaded="{!c.handleScriptsLoaded}"
+    />
+
+</aura:component>

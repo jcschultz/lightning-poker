@@ -1,0 +1,8 @@
+<!--
+ - Created by john on 7/3/17.
+ -->
+
+<aura:event type="COMPONENT" description="Event for communicating about user story saves.">
+	<aura:attribute name="isComplete" type="Boolean" description="Indicates the story has completed saving." />
+	<aura:attribute name="storyId" type="Id" description="ID of the user story (poker hand) record." />
+</aura:event>

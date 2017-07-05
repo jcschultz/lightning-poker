@@ -3,23 +3,24 @@
  */
 ({
 	
-	clearErrors : function(component, event, helper) {
-		component.set('v.showError', false);
-		component.set('v.errorMsg', '');
+	clearNotifications : function(component, event, helper) {
+		component.set('v.showNotification', false);
+		component.set('v.notificationMessage', '');
+		component.set('v.notificationSeverity', '');
 	},
 	
 	completeStage1 : function (component, event, helper) {
-		var action = component.get('c.createNewGame');
-		var gameNameInput = component.find('gameName').get('v.value').trim();
+		let action = component.get('c.createNewGame');
+		let gameNameInput = component.find('gameName').get('v.value').trim();
 		
 		helper.spinnerShow(component, event, helper);
-		helper.clearErrors(component, event, helper);
+		helper.clearNotifications(component, event, helper);
 		
 		action.setParams({'gameName' : gameNameInput});
 		
-		action.setCallback(this, function(a) {
-			var state = a.getState();
-			var response = a.getReturnValue();
+		action.setCallback(this, function(res) {
+			let state = res.getState();
+			let response = res.getReturnValue();
 			
 			if (state === 'SUCCESS') {
 				component.set('v.game', response);
@@ -28,8 +29,8 @@
 				component.set('v.pageTitle', 'Poker Game: ' + response.Name);
 			}
 			else {
-				console.log('error creating new game', a.getError());
-				component.set('v.errorMsg', 'There was an error creating a new game. Please try again.');
+				console.log('error creating new game', res.getError());
+				helper.showNotifications(component, event, helper, 'error', 'There was an error creating a new game. Please try again.');
 			}
 			
 			helper.spinnerHide(component, event, helper);
@@ -39,7 +40,7 @@
 	},
 	
 	goToNextStage : function(component, event, helper) {
-		var currentStage = component.get('v.currentStage');
+		let currentStage = component.get('v.currentStage');
 		
 		if (currentStage === 1) {
 			helper.completeStage1(component, event, helper);
@@ -52,6 +53,36 @@
 		}
 	},
 	
+	handleGameNotification : function(component, event, helper) {
+		let severity = event.getParam('severity');
+		let message = event.getParam('message');
+		
+		helper.showNotifications(component, event, helper, severity, message);
+	},
+	
+	handleRender : function(component, event, helper) {
+		let currentStage = component.get('v.currentStage');
+		let gameNameInput = component.find('gameName');
+		
+		if (currentStage === 1 && gameNameInput) {
+			gameNameInput.focus();
+		}
+	},
+	
+	handleStorySaveEvent : function(component, event, helper) {
+		let currentStage = component.get('v.currentStage');
+		
+		if (currentStage === 2) {
+			component.set('v.isNextDisabled', false);
+		}
+	},
+	
+	showNotifications : function(component, event, helper, severity, message) {
+		component.set('v.notificationSeverity', severity);
+		component.set('v.notificationMessage', message);
+		component.set('v.showNotification', true);
+	},
+	
 	spinnerHide : function(component, event, helper) {
 		component.set('v.showSpinner', false);
 	},
@@ -61,7 +92,7 @@
 	},
 	
 	validateGameName : function(component, event, helper) {
-		var gameNameInput = component.find('gameName').get('v.value');
+		let gameNameInput = component.find('gameName').get('v.value');
 		
 		gameNameInput = gameNameInput != null ? gameNameInput.trim() : '';
 		

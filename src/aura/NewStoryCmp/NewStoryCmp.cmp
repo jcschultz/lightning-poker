@@ -1,0 +1,31 @@
+<!--
+ - Created by john on 7/3/17.
+ -->
+
+<aura:component description="Component for creating a new user story/poker hand" controller="NewGameCmpController" access="global">
+
+	<aura:attribute name="gameId" access="global" type="Id" default="" description="ID of the poker game the story will be related to" required="true" />
+	<aura:attribute name="storyName" access="global" type="String" default="" description="Name of the user story" />
+	<aura:attribute name="displayOrder" access="global" type="Integer" default="0" description="The story's position in the order of being displayed." />
+	<aura:attribute name="isSaveDisabled" access="global" type="Boolean" default="true" description="Toggles the save button's disabled state." />
+	<aura:attribute name="showSpinner" access="private" type="Boolean" default="false" description="Toggles the spinner." />
+
+	<aura:registerEvent name="storySaveEvent" type="c:StorySaveEvent" />
+	<aura:registerEvent name="notificationEvent" type="c:NewGameNotificationEvent" />
+
+	<div>
+		<div class="slds-grid">
+			<div class="slds-size_8-of-12">
+				<lightning:input label="User Story Name" name="nameInput" required="true" messageWhenValueMissing="Please enter a user story name." type="text" value="{!v.storyName}" placeholder="Ex: US123: Lorem ipsum dolar set" onchange="{!c.handleNameChange}" pattern=".+\S+.+" messageWhenPatternMismatch="The user story name must contain at least one alphanumeric character." aura:id="nameInput" />
+			</div>
+			<div class="slds-size_3-of-12 slds-p-left_medium button-col">
+				<lightning:button variant="brand" disabled="{!v.isSaveDisabled}" onclick="{!c.handleSaveClick}" label="Add User Story" />
+			</div>
+		</div>
+
+		<aura:if isTrue="{!v.showSpinner}">
+			<lightning:spinner variant="brand" size="large" alternativeText="Saving user story" />
+		</aura:if>
+	</div>
+
+</aura:component>
