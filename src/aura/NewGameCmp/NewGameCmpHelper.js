@@ -28,7 +28,7 @@
 				component.set('v.currentStage', 2);
 				component.set('v.isNextDisabled', true);
 				component.set('v.pageTitle', 'Poker Game: ' + response.Name);
-				component.set('v.url', url + response.Id);
+				component.set('v.gameUrl', url + response.Id);
 			}
 			else {
 				console.log('error creating new game', res.getError());
