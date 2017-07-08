@@ -11,6 +11,7 @@
 	<aura:attribute name="notificationSeverity" access="private" type="String" default="" description="Notification severity (message, confirm, info, warning, error)." />
 	<aura:attribute name="showNotification" access="private" type="Boolean" default="false" description="Toggles notification display." />
 	<aura:attribute name="showSpinner" access="private" type="Boolean" default="false" description="Toggle the spinner." />
+	<aura:attribute name="gameUrl" access="private" type="Striing" default="" description="URL of the poker game." />
 	<aura:attribute name="game" access="global" type="Poker_Game__c" description="Poker Game record"
 	                default="{
 	                    'sobjectType': 'Poker_Game__c',
@@ -77,13 +78,24 @@
 
 		<!--stage 3: invite players-->
 		<aura:if isTrue="{!v.currentStage == 3}">
-
+			<div class="slds-text-heading_medium slds-m-bottom_x-large">Invite Players and Start the Game</div>
+			<p>Invite players to the game by providing them with the following URL:</p>
+			<div class="slds-card slds-m-around_x-large slds-p-around_large">
+				{!v.gameUrl}
+			</div>
+			<div class="slds-grid slds-grid_align-center slds-m-top_x-large">
+				<lightning:button variant="brand" label="Start the Poker Game!" onclick="{!c.handleStartGameClick}" />
+			</div>
 		</aura:if>
 		<!--/stage 3-->
 
-		<div class="slds-grid slds-grid_align-end slds-m-top_large">
-			<lightning:button variant="brand" label="Next" iconName="utility:forward" iconPosition="right" onclick="{!c.handleNextClick}" disabled="{!v.isNextDisabled}" />
-		</div>
+		<!--next button-->
+		<aura:if isTrue="{!lessthan(v.currentStage, 3)}">
+			<div class="slds-grid slds-grid_align-end slds-m-top_large">
+				<lightning:button variant="brand" label="Next" iconName="utility:forward" iconPosition="right" onclick="{!c.handleNextClick}" disabled="{!v.isNextDisabled}" />
+			</div>
+		</aura:if>
+		<!--/next button-->
 
 	</div><!--.slds-container-->
 

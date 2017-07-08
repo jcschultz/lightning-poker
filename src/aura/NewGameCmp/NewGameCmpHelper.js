@@ -12,6 +12,7 @@
 	completeStage1 : function (component, event, helper) {
 		let action = component.get('c.createNewGame');
 		let gameNameInput = component.find('gameName').get('v.value').trim();
+		let url = window.location.href.split('/').slice(0, 3).join('/') + '/c/PokerApp.app?id=';
 		
 		helper.spinnerShow(component, event, helper);
 		helper.clearNotifications(component, event, helper);
@@ -27,6 +28,7 @@
 				component.set('v.currentStage', 2);
 				component.set('v.isNextDisabled', true);
 				component.set('v.pageTitle', 'Poker Game: ' + response.Name);
+				component.set('v.url', url + response.Id);
 			}
 			else {
 				console.log('error creating new game', res.getError());
@@ -39,6 +41,20 @@
 		$A.enqueueAction(action);
 	},
 	
+	completeStage2 : function(component, event, helper) {
+		component.set('v.currentStage', 3);
+	},
+	
+	goToGameBoard : function(component, event, helper) {
+		let url = component.get('v.gameUrl');
+		let urlEvent = $A.get('e.force:navigateToURL');
+		
+		urlEvent.setParams({
+			'url' : url
+		});
+		urlEvent.fire();
+	},
+	
 	goToNextStage : function(component, event, helper) {
 		let currentStage = component.get('v.currentStage');
 		
@@ -46,10 +62,7 @@
 			helper.completeStage1(component, event, helper);
 		}
 		else if (currentStage === 2) {
-		
-		}
-		else {
-		
+			helper.completeStage2(component, event, helper);
 		}
 	},
 	

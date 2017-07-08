@@ -23,6 +23,10 @@
 		helper.handleRender(component, event, helper);
 	},
 	
+	handleStartGameClick : function(component, event, helper) {
+		helper.goToGameBoard(component, event, helper);
+	},
+	
 	handleStorySaveEvent : function(component, event, helper) {
 		helper.handleStorySaveEvent(component, event, helper);
 	},
