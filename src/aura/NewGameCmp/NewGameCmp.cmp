@@ -11,7 +11,7 @@
 	<aura:attribute name="notificationSeverity" access="private" type="String" default="" description="Notification severity (message, confirm, info, warning, error)." />
 	<aura:attribute name="showNotification" access="private" type="Boolean" default="false" description="Toggles notification display." />
 	<aura:attribute name="showSpinner" access="private" type="Boolean" default="false" description="Toggle the spinner." />
-	<aura:attribute name="gameUrl" access="private" type="Striing" default="" description="URL of the poker game." />
+	<aura:attribute name="gameUrl" access="private" type="String" default="" description="URL of the poker game." />
 	<aura:attribute name="game" access="global" type="Poker_Game__c" description="Poker Game record"
 	                default="{
 	                    'sobjectType': 'Poker_Game__c',
