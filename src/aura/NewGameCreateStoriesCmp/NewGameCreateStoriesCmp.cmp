@@ -27,8 +27,7 @@
 
 	</div>
 
-	<ltng:require
-		styles="{!$Resource.Dragula + '/dragula.min.css'}"
+	<ltng:require styles="{!$Resource.Dragula + '/dragula.min.css'}"
 		scripts="{!$Resource.Dragula + '/dragula.min.js'}"
         afterScriptsLoaded="{!c.handleScriptsLoaded}"
     />
