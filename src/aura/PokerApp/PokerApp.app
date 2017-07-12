@@ -10,7 +10,7 @@
 
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-	<div class="slds">
+	<div class="slds poker-container slds-grid_frame">
 
 		<c:PokerErrorCmp aura:id="errorCmp" />
 
