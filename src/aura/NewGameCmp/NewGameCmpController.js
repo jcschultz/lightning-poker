@@ -7,6 +7,10 @@
 		helper.clearNotifications(component, event, helper);
 	},
 	
+	handleCopyUrlClick : function(component, event, helper) {
+		helper.copyUrl(component, event, helper);
+	},
+	
 	handleGameNameChange : function(component, event, helper) {
 		helper.validateGameName(component, event, helper);
 	},

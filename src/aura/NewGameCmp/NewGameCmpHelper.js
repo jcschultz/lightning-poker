@@ -45,12 +45,24 @@
 		component.set('v.currentStage', 3);
 	},
 	
+	copyUrl : function(component, event, helper) {
+		let textArea = component.find('urlTextarea').getElement();
+		textArea.select();
+		document.execCommand('copy');
+	},
+	
 	goToGameBoard : function(component, event, helper) {
 		let url = component.get('v.gameUrl');
 		let urlEvent = $A.get('e.force:navigateToURL');
+		let relativePath = '';
+		
+		let idx = url.indexOf('/');
+		
+		relativePath = url.substring(idx);
 		
 		urlEvent.setParams({
-			'url' : url
+			'url' : relativePath,
+			'isredirect' : true
 		});
 		urlEvent.fire();
 	},
